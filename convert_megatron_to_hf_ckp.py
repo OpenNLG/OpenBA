@@ -10,8 +10,8 @@ import torch
 from transformers.modeling_utils import WEIGHTS_INDEX_NAME, WEIGHTS_NAME, shard_checkpoint
 from OpenBT5 import OpenBT5Config, OpenBT5Tokenizer
 
-sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), os.path.pardir)))
-
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), 'training')))
+print(os.path.abspath(os.path.join(os.path.dirname(__file__), 'training')))
 
 
 def add_checkpointing_args(parser):
@@ -359,7 +359,7 @@ def convert_checkpoint_from_megatron_to_transformers(args):
     # checkpoint_version = state_dict.get("checkpoint_version", 0.0)
     tp_size = megatron_args.tensor_model_parallel_size
     pp_size = megatron_args.pipeline_model_parallel_size
-    dtype = torch.float32
+    dtype = torch.float16
     # The regex to extract layer names.
     layer_re = re.compile(r"layers\.(\d+)\.([a-z0-9_.]+)\.([a-z]+)")
     assert pp_size == 1
@@ -458,7 +458,7 @@ def convert_checkpoint_from_megatron_to_transformers(args):
     # see https://github.com/huggingface/transformers/issues/13906)
 
     if args.tokenizer_name is None:
-        tokenizer_name = "gpt2"
+        tokenizer_name = "mt5-base"
     else:
         tokenizer_name = args.tokenizer_name
 

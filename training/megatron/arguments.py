@@ -9,7 +9,10 @@ import torch
 import types
 
 from megatron.global_vars import set_retro_args, get_retro_args
-from tools.retro.utils import get_args_path as get_retro_args_path
+try:
+    from tools.retro.utils import get_args_path as get_retro_args_path
+except:
+    pass
 
 
 def parse_args(extra_args_provider=None, ignore_unknown_args=False):
