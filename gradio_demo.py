@@ -1,17 +1,13 @@
 import gradio as gr
 import random
 import time
-from OpenBT5.tokenization_openbt5 import OpenBT5Tokenizer
-from OpenBT5.configuration_openbt5 import OpenBT5Config
-from OpenBT5.modeling_openbt5 import OpenBT5ForConditionalGeneration
+from transformers import AutoTokenizer, AutoModelForSeq2SeqLM
 import re
 import torch
 import os
 
-tokenizer = OpenBT5Tokenizer.from_pretrained('/path/to/ckp')
-config = OpenBT5Config.from_pretrained('/path/to/ckp')
-model = OpenBT5ForConditionalGeneration.from_pretrained('/path/to/ckp')
-model = model.half().cuda()
+tokenizer = AutoTokenizer.from_pretrained('OpenBT5/OpenBT5-Flan', trust_remote_code=True)
+model = AutoModelForSeq2SeqLM.from_pretrained('OpenBT5/OpenBT5-Flan', trust_remote_code=True).half().cuda()
 model.eval()
 
 def case_insensitive_replace(input_str, from_str, to_str):
