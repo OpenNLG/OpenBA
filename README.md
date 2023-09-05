@@ -6,7 +6,22 @@ An Open-Source Bilingual Language Model Based on the T5 Architecture.
 pip install transformers torch>=2.0 sentencepiece
 ```
 
-Demo:
+
+OpenBT5-LM:
+```python
+>>> from transformers import AutoTokenizer, AutoModelForSeq2SeqLM
+>>> tokenizer = AutoTokenizer.from_pretrained("OpenBT5/OpenBT5-LM", trust_remote_code=True)
+>>> model = AutoModelForSeq2SeqLM.from_pretrained("OpenBT5/OpenBT5-LM", trust_remote_code=True).half().cuda()
+>>> model = model.eval()
+>>> query = "<S>" + "苏州处太湖平原，沿江为高沙平原，河" + "<extra_id_0>"
+>>> inputs = tokenizer(query, return_tensors="pt").to("cuda")
+>>> outputs = model.generate(**inputs, do_sample=True, max_new_tokens=32)
+>>> response = tokenizer.decode(outputs[0], skip_special_tokens=True)
+>>> print(response)
+流两侧为河淤平原,苏州平原是江苏平原主体,地势低平,土地肥沃,气候温和
+```
+
+OpenBT5-Flan:
 ```python
 >>> from transformers import AutoTokenizer, AutoModelForSeq2SeqLM
 >>> tokenizer = AutoTokenizer.from_pretrained("OpenBT5/OpenBT5-Flan", trust_remote_code=True)
@@ -21,7 +36,7 @@ Demo:
 ```
 
 ## Huggingface
-We open-source three version of our models:
+We open-source two versions of our models:
 
 - [OpenBT5-LM](https://huggingface.co/OpenBT5/OpenBT5-LM): 
 - [OPenBT5-Flan](https://huggingface.co/OpenBT5/OpenBT5-Flan):
