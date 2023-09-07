@@ -1,11 +1,37 @@
 # OpenBT5-LM
 An Open-Source Bilingual Language Model Based on the T5 Architecture.
 
+## Training
+
+Our training code are put in folder `training`. Based on [Megatron-LM](https://github.com/NVIDIA/Megatron-LM/), we made the following implementations:
+- SwiGLU activation function,
+- UL2 training objective,
+- Rotary positional embedding,
+- A unified MMap data processing method for both pre-training and fine-tuning phases.
+
+For pre-training, relevant requirements should be installed beforehand as stated in [Megatron-LM](https://github.com/NVIDIA/Megatron-LM/), then you can simply run the following command to process texts into bytes, which can be read faster by a MMap Dataset:
+
+```bash
+cd training
+bash scripts/data_process_span_corr.sh  # process pretrain data
+bash scripts/data_process_flan.sh  # process fine-tune data
+```
+
+The you can run distributed training across multi nodes by
+```bash
+bash scripts/run_pretrain.sh  # pre-train
+bash scripts/run_stretch.sh  # length adaptation
+bash scripts/run_flan.sh   # fine-tune
+```
+
+## Inference
+To make it more convenient for developers to use, we have refactored our model to follow the design principles of the Huggingface Transformers Library.
+You can simply 
+
 安装依赖：
 ```bash
 pip install transformers torch>=2.0 sentencepiece
 ```
-
 
 OpenBT5-LM:
 ```python
