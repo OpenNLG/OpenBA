@@ -10,7 +10,7 @@ NODE_RANK=0
 GPUS_PER_NODE=8
 
 LOAD_PATH="/data/checkpoint/14b_main"
-CHECKPOINT_PATH="/data/checkpoint/14b_main_long_final_new"
+CHECKPOINT_PATH="/data/checkpoint/14b_main_stretch"
 TRAIN_DATA_PATH="/data/en_zh/all_data_stretch_2048"
 VALID_DATA_PATH="/data/en_zh/all_data_stretch_2048"
 TOKENIZER_PATH="/data/tokenizer/multilingual-spiece.model"
