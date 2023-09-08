@@ -9,10 +9,10 @@ NNODES=4
 NODE_RANK=0
 GPUS_PER_NODE=8
 
-LOAD_PATH="/data/checkpoint/14b_flan_final_v1"
-CHECKPOINT_PATH="/data/checkpoint/14b_flan_final_v2"
-TRAIN_DATA_PATH="/data/all_instruct/biflan/biflan_1.5e7_multitask"
-VALID_DATA_PATH="/data/all_instruct/biflan/biflan_1.5e7_multitask"
+LOAD_PATH="/data/checkpoint/14b_main_stretch"
+CHECKPOINT_PATH="/data/checkpoint/14b_flan_final"
+TRAIN_DATA_PATH="/data/all_instruct/biflan/biflan_multitask"
+VALID_DATA_PATH="/data/all_instruct/biflan/biflan_multitask"
 TOKENIZER_PATH="/data/tokenizer/multilingual-spiece.model"
 TESNSORBOARD_PATH=$CHECKPOINT_PATH/tensorboard
 
