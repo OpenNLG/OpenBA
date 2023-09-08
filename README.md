@@ -1,14 +1,13 @@
-# OpenBT5-LM
-
-<p align="center" width="100%">
-<a target="_blank"><img src="assets/training_process.png"  style="width: 100%; min-width: 300px; display: block; margin: auto;"></a>
-</p>
+# OpenBT5
+This is the official code for OpenBT5: An Open-Sourced 15B Bilingual Flan-T5 Model Pre-trained from Scratch
 
 [![Code License](https://img.shields.io/badge/Code%20License-Apache_2.0-brightgreen.svg)](https://github.com/OpenBT5/OpenBT5-LM/blob/main/LICENSE)
 [![Data License](https://img.shields.io/badge/Data%20License-CC%20BY--NC%204.0-blue.svg)](https://github.com/OpenBT5/OpenBT5-LM/blob/main/DATA_LICENSE)
 [![Model License](https://img.shields.io/badge/Model%20License-GNU%20AGPL%203.0-red.svg)](https://github.com/OpenBT5/OpenBT5-LM/main/MODEL_LICENSE)
 
+## Content
 - [Open Source Plan](#open-source-plan)
+- [Overview of Training process](#overview-of-training-process)
 - [Evaluation Results](#evaluation-results)
   - [C-EVAL](#c-eval)
   - [BBH](#bbh)
@@ -30,6 +29,11 @@ We are excited to unveil two distinguished versions of our model, with another o
 - [OpenBT5-LM](https://huggingface.co/OpenBT5/OpenBT5-LM): The backbone language models was pre-trained on 340B English, Chinese, and code tokens. 
 - [OpenBT5-Flan](https://huggingface.co/OpenBT5/OpenBT5-Flan): We perform supervised fine-tuning on the base model with additional 40B tokens using our collected BiFlan Dataset.
 - OpenBT5-Chat: coming soon
+
+## Overview of Training process
+<p align="center" width="100%">
+<a target="_blank"><img src="assets/training_process.png"  style="width: 100%; min-width: 300px; display: block; margin: auto;"></a>
+</p>
 
 ## Evalution Results
 
