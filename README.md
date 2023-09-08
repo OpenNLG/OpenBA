@@ -1,4 +1,4 @@
-# OpenBT5
+# OpenBT5-LM
 This is the official code for OpenBT5: An Open-Sourced 15B Bilingual Flan-T5 Model Pre-trained from Scratch
 
 [![Code License](https://img.shields.io/badge/Code%20License-Apache_2.0-brightgreen.svg)](https://github.com/OpenBT5/OpenBT5-LM/blob/main/LICENSE)
