@@ -73,7 +73,7 @@ Model performance on BELEBELE benchmark, where \#Param. denotes the model parame
 ### Machine Translation
 Model performance on Flores subset containing 50 sentences sampled from Flores benchmark, where \#Param. denotes the model parameters. We report BLEU for all the models.
 
-| Model | #Param. | Zh => En | En => Zh |
+| Model | #Param. | Zh $\Rightarrow$ En | En $\Rightarrow$ Zh |
 | :--- | :---: | :---: | :---: |
 | ChatGLM | 6B | 17.2 | 32.5  |
 | Alpaca | 7B | 15.1 | 9.8 |
