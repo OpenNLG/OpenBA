@@ -148,7 +148,7 @@ However, it is worth noting that the encoder and decoder serve different roles, 
 To fill the gap of deeper decoder-based LLM, we also design an asymmetric structure, where the hyper-parameters are listed in the table below.
 | Encoder | Decoder | Attn Heads | $d_{model}$ | $d_{ff}$ | #Param.(B) | Vocab Size | Training Tokens | Pos Emb |
 | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | 
-| 12 | 36 | 40 | 4096 | 16384 | 14.6 | - | -  | -  |
+| 12 | 36 | 40 | 4096 | 16384 | 14.6 | 251000 | 380B  | RoPE  |
 
 - Language(s) (NLP): Chinese/English
 - License: The code in this project is licensed under the Apache 2.0 license, the model weights are licensed under the GNU AGPL 3.0 license. If you intend to use the models included in this project for commercial purposes or public deployment, please email to us to obtain authorization. Commercial usage information will be used for record purposes only and no fees will be charged.
