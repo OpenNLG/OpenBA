@@ -1,10 +1,11 @@
 # OpenBT5-LM
 This is the official code for OpenBT5: An Open-Sourced 15B Bilingual Flan-T5 Model Pre-trained from Scratch
 
-[![Code License](https://img.shields.io/badge/Code%20License-Apache_2.0-brightgreen.svg)](https://github.com/OpenBT5/OpenBT5-LM/blob/main/LICENSE)
-[![Data License](https://img.shields.io/badge/Data%20License-CC%20BY--NC%204.0-blue.svg)](https://github.com/OpenBT5/OpenBT5-LM/blob/main/DATA_LICENSE)
-[![Model License](https://img.shields.io/badge/Model%20License-GNU%20AGPL%203.0-red.svg)](https://github.com/OpenBT5/OpenBT5-LM/main/MODEL_LICENSE)
+[![Code License](https://img.shields.io/badge/Code%20License-Apache_2.0-brightgreen.svg)](LICENSE)
+[![Data License](https://img.shields.io/badge/Data%20License-CC%20BY--NC%204.0-blue.svg)](DATA_LICENSE)
+[![Model License](https://img.shields.io/badge/Model%20License-GNU%20AGPL%203.0-red.svg)](MODEL_LICENSE)
 
+[[中文版](README_ZH.md)] [[English](README.md)]
 ## Content
 - [Open Source Plan](#open-source-plan)
 - [Overview of Training process](#overview-of-training-process)
@@ -70,6 +71,7 @@ Model performance on BELEBELE benchmark, where \#Param. denotes the model parame
 | XLM-V $(‡)$ | 1.2B | 76.2 | 71.0 | 67.1 | 71.4 |
 | LLaMA2-Chat $(*)$ | 70B | 78.8 | 62.4 | 59.3 | 66.8 |
 | OpenBT5 $(*)$ | 15B | 78.6 | **75.2**  | **73.7**  | **75.8**  |
+
 ### Machine Translation
 Model performance on Flores subset containing 50 sentences sampled from Flores benchmark, where \#Param. denotes the model parameters. We report BLEU for all the models.
 
