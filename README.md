@@ -1,5 +1,7 @@
+<div align=center><img src="assets/icon.png" width="200"></div>
+
 # OpenBT5-LM
-This is the official code for OpenBT5: An Open-Sourced 15B Bilingual Flan-T5 Model Pre-trained from Scratch
+This is the official code for OpenBT5: An Open-Sourced 15B Bilingual Flan-T5 Model Pre-trained from Scratch.
 
 [![Code License](https://img.shields.io/badge/Code%20License-Apache_2.0-brightgreen.svg)](LICENSE)
 [![Data License](https://img.shields.io/badge/Data%20License-CC%20BY--NC%204.0-blue.svg)](DATA_LICENSE)
@@ -36,7 +38,7 @@ We are excited to unveil two distinguished versions of our model, with another o
 <a target="_blank"><img src="assets/training_process.png"  style="width: 100%; min-width: 300px; display: block; margin: auto;"></a>
 </p>
 
-## Evalution Results
+## Evaluation Results
 
 ### C-EVAL
 Model performance on C-Eval benchmark, where \#Param. denotes the model parameters, $*$ denotes chain-of-thought and Avg. denotes average accuracy. We report the 5-shot and 0-shot performance with diagonal bar division.
@@ -86,12 +88,13 @@ Model performance on Flores subset containing 50 sentences sampled from Flores b
 | OpenBT5 | 15B | 23.3 | 37.4  |
 ## Usage
 ### DEMO 
-First you should install the requirements as below:
+You should first install the requirements below:
 ```bash
 pip install transformers torch>=2.0 sentencepiece
 ```
 
 For inference, note that we restore the task token `<S>` and special token `<extra_id_0>` in length adaptation and fine-tuning stage, so you may format your instruction input as `<S> {your input} <extra_id_0>` to get a better answer.
+
 
 Below is a sentence completion example using `OpenBT5-LM`. 
 ```python
@@ -146,14 +149,15 @@ bash scripts/run_flan.sh   # fine-tune
 
 ### Model Structure
 Generally, the OpenBT5 model follows the standard encoder-decoder architecture like T5.
-However, it is worth noting that the encoder and decoder serve different roles, where encoder endows model with strong comprehension capability and decoder brings model with generative ability, and there existing works indicate that an encoder-decoder model with more encoder layers can achieve powerful performance.
+However, it is worth noting that the encoder and decoder serve different roles, where the encoder endows the model with strong comprehension capability, and the decoder brings the model with generative ability. Existing works indicate that an encoder-decoder model with more encoder layers can achieve powerful performance.
 To fill the gap of deeper decoder-based LLM, we also design an asymmetric structure, where the hyper-parameters are listed in the table below.
 | Encoder | Decoder | Attn Heads | $d_{model}$ | $d_{ff}$ | #Param.(B) | Vocab Size | Training Tokens | Pos Emb |
 | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | 
 | 12 | 36 | 40 | 4096 | 16384 | 14.6 | 251000 | 380B  | RoPE  |
 
 - Language(s) (NLP): Chinese/English
-- License: The code in this project is licensed under the Apache 2.0 license, the model weights are licensed under the GNU AGPL 3.0 license. If you intend to use the models included in this project for commercial purposes or public deployment, please email to us to obtain authorization. Commercial usage information will be used for record purposes only and no fees will be charged.
+- License: The code in this project is licensed under the Apache 2.0 license, and the model weights are licensed under the GNU AGPL 3.0 license. If you intend to use the models included in this project for commercial purposes or public deployment, please email us to obtain authorization. Commercial usage information will be used for record purposes only, and no fees will be charged.
+
 ### Data Collection
 
 <p align="center" width="100%">

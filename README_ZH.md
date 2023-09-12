@@ -16,7 +16,7 @@
   - [阅读理解](#阅读理解)
   - [机器翻译](#机器翻译)
 - [用法](#用法)
-  - [演示](#展示)
+  - [演示](#演示)
   - [训练](#训练)
 - [详细信息](#详细信息)
   - [模型结构](#模型结构)
@@ -36,7 +36,7 @@
 <a target="_blank"><img src="assets/training_process.png"  style="width: 100%; min-width: 300px; display: block; margin: auto;"></a>
 </p>
 
-## 评估结果
+## 评测结果
 
 ### C-EVAL
 下表是模型在C-Eval基准测试中的性能，其中\#Param.表示模型参数，$*$表示CoT，Avg.表示平均准确率。我们汇报5-shot和0-shot性能，用对角线条划分。
@@ -50,7 +50,7 @@
 | GLM-130B | 130B | 36.7 | 55.8 | 47.7 | 43.0 | 44.0 | 30.7 |
 | OpenBT5 | 15B | 34.8 | 46.6 | 41.1 | 41.5 | 39.8 | 31.1 |
 ### BBH
-下表是模型在BBH基准测试中的性能，其中\#Param.表示模型参数。我们报告所有模型的准确率。
+下表是模型在BBH基准测试中的性能，其中\#Param.表示模型参数。我们汇报所有模型的准确率。
 
 | Model | #Param. | BBH |
 | :--- | :---: | :---: |
@@ -61,7 +61,7 @@
 | OpenBT5 | 15B | **34.1**  |
 
 ### 阅读理解
-下表是模型在BELEBELE基准测试中的性能，其中\#Param.表示模型参数，$\dagger$表示5-shot设置，$\ddagger$表示全英文微调，$*$表示针对指导模型的0-shot设置。
+下表是模型在BELEBELE基准测试中的性能，其中\#Param.表示模型参数，$\dagger$表示5-shot设置，$\ddagger$表示全英文微调，$*$表示针对指令模型的0-shot设置。
 
 | Model | #Param. | eng_Latn | zho_Hans | zho_Hant | Avg. |
 | :--- | :---: | :---: | :---: | :---: | :---: |
@@ -73,7 +73,7 @@
 | OpenBT5 $(*)$ | 15B | 78.6 | **75.2**  | **73.7**  | **75.8**  |
 
 ### 机器翻译
-模型在包含从Flores基准测试中采样的50个句子的Flores子集上的性能，其中\#Param.表示模型参数。我们报告所有模型的BLEU。
+下表是模型在包含从Flores基准测试中采样的50个句子的Flores子集上的性能，其中\#Param.表示模型参数。我们汇报了所有模型的BLEU值。
 
 | Model | #Param. | Zh $\Rightarrow$ En | En $\Rightarrow$ Zh |
 | :--- | :---: | :---: | :---: |
@@ -91,7 +91,7 @@
 pip install transformers torch>=2.0 sentencepiece
 ```
 
-对于推理，注意我们在长度适应和微调阶段恢复了任务token `<S>` 和特殊token `<extra_id_0>` ，所以你可以将输入指令格式化为 `<S> {your input} <extra_id_0>` 以获得更好的答案。
+推理时，我们在长度适应和微调阶段恢复了任务token `<S>` 和特殊token `<extra_id_0>` ，所以你可以将输入指令格式化为 `<S> {your input} <extra_id_0>` 以获得更好的答案。
 
 以下是使用`OpenBT5-LM`的句子补全示例。
 ```python
@@ -107,7 +107,7 @@ pip install transformers torch>=2.0 sentencepiece
 流两侧为河淤平原,苏州平原是江苏平原主体,地势低平,土地肥沃,气候温和
 ```
 
-以下是使用`OpenBT5-Flan`的指令示例。
+以下是使用`OpenBT5-Flan`遵循指令对话的示例。
 ```python
 >>> from transformers import AutoTokenizer, AutoModelForSeq2SeqLM
 >>> tokenizer = AutoTokenizer.from_pretrained("OpenBT5/OpenBT5-Flan", trust_remote_code=True)
@@ -121,13 +121,13 @@ pip install transformers torch>=2.0 sentencepiece
 中国的四大名著分别是《红楼梦》、《西游记》、《水浒传》和《三国演义》。它们分别包括故事情节、文化内涵和历史背景等方面的不同特点。《红楼梦》是一部中国古典小说,讲述了贾宝玉、林黛玉、薛宝钗等一群人物在贾府的生活和爱情故事。《西游记》是中国著名小说,描述了孙悟空、猪八戒、沙悟净等一众妖魔鬼怪的冒险历程和故事。《水浒传》是一部中国古典小说,描述了宋江等一百零八位好汉的反抗故事。《三国演义》是中国古代著名小说,讲述了三国时期的历史和战争故事。这些小说在文学、历史、哲学和文化等方面都有着不同的影响和地位。
 ```
 ### 训练
-我们的训练代码放在`training`文件夹中。基于[Megatron-LM](https://github.com/NVIDIA/Megatron-LM/)，我们进行了以下实现：
+我们的训练代码在`training`文件夹中。基于[Megatron-LM](https://github.com/NVIDIA/Megatron-LM/)，我们进行了以下实现：
 - SwiGLU激活函数，
 - UL2训练目标，
 - 旋转位置嵌入，
 - 一个统一的MMap数据处理方法，适用于预训练和微调阶段。
 
-对于预训练，应事先安装相关要求，如[Megatron-LM](https://github.com/NVIDIA/Megatron-LM/)中所述，然后您可以简单地运行以下命令将文本处理为字节，这样MMap数据集可以更快地读取：
+对于预训练，应事先安装相关依赖，如[Megatron-LM](https://github.com/NVIDIA/Megatron-LM/)中所述，然后您可以简单地运行以下命令将文本处理为字节，这样MMap数据集可以更快地读取：
 
 ```bash
 cd training
@@ -145,10 +145,10 @@ bash scripts/run_flan.sh   # 微调
 ## 详细信息
 
 ### 模型结构
-一般来说，OpenBT5模型遵循类似T5的标准encoder-decoder架构。
+一般来说，OpenBT5模型遵循类似T5的encoder-decoder架构。
 值得注意的是，编码器和解码器扮演不同的角色，其中编码器赋予模型强大的理解能力，而解码器带来模型的生成能力，并且已有的工作表明，具有更多encoder层的encoder-decoder模型可以实现强大的性能。
-为了填补更深的解码器为基础的LLM的空白，我们还设计了一个非对称结构，其中超参数列在下表中。
-| 编码器 | 解码器 | Attn Heads | $d_{model}$ | $d_{ff}$ | #Param.(B) | 词汇表大小 | 训练令牌 | Pos Emb |
+为了填补更深的解码器为基础的大语言模型的空白，我们还设计了一个非对称结构，其中超参数列在下表中。
+| Encoder | Decoder | Attn Heads | $d_{model}$ | $d_{ff}$ | #Param.(B) | Vocab Size | Training Tokens | Pos Emb |
 | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | 
 | 12 | 36 | 40 | 4096 | 16384 | 14.6 | 251000 | 380B  | RoPE  |
 
@@ -159,7 +159,7 @@ bash scripts/run_flan.sh   # 微调
 <p align="center" width="100%">
 <a target="_blank"><img src="assets/data.png"  style="width: 100%; min-width: 300px; display: block; margin: auto;"></a>
 </p>
-数据收集的组成。图(a)表示预训练数据集的组成比例。图(b)表示双语Flan数据集的组成。图(c)表示中文Flan数据集的更细粒度组成。
+上图展示了训练数据的组成。图(a)表示预训练数据集的组成比例。图(b)表示双语Flan数据集的组成。图(c)表示中文Flan数据集的更细粒度组成。
 
 ## 免责声明
 使用OpenBT5-LM应遵循社会规范，不得用于危害国家或社会安全或违反法律的活动。此外，我们还要求用户不要将OpenBT5-LM用于尚未经过适当安全审查和记录的互联网服务。我们希望所有用户都遵守这一原则，确保技术发展在一个有序、合法的环境中进行。
