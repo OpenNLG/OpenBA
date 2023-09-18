@@ -1,5 +1,5 @@
-# OpenBT5-LM
-这是官方的OpenBT5项目：一个从头开始预训练的开源15B双语Flan-T5模型。
+# OpenBA
+这是官方的OpenBA项目：一个从头开始预训练的开源15B双语非对称端到端模型。
 
 [![代码许可](https://img.shields.io/badge/Code%20License-Apache_2.0-brightgreen.svg)](LICENSE)
 [![数据许可](https://img.shields.io/badge/Data%20License-CC%20BY--NC%204.0-blue.svg)](DATA_LICENSE)
@@ -27,9 +27,9 @@
 
 ## 开源计划
 我们开源了两个版本你的模型，另一个模型即将开源：
-- [OpenBT5-LM](https://huggingface.co/OpenBT5/OpenBT5-LM)：支柱语言模型预训练在英语、中文和代码令牌上的340B。
-- [OpenBT5-Flan](https://huggingface.co/OpenBT5/OpenBT5-Flan)：我们对基础模型进行监督式微调，额外使用40B令牌和我们收集的BiFlan数据集。
-- OpenBT5-Chat：即将推出
+- [OpenBA-LM](https://huggingface.co/OpenBA/OpenBA-LM)：支柱语言模型预训练在英语、中文和代码令牌上的340B。
+- [OpenBA-Flan](https://huggingface.co/OpenBA/OpenBA-Flan)：我们对基础模型进行监督式微调，额外使用40B令牌和我们收集的BiFlan数据集。
+- OpenBA-Chat：即将推出
 
 ## 训练过程
 <p align="center" width="100%">
@@ -48,7 +48,7 @@
 | Baichuan | 7B | 38.2 | 52.0 | 46.2 | 39.3 | 42.8 | 31.5 |
 | MOSS-moon-sft | 16B | 31.6 | 37.0 | 33.4 | 32.1 | 33.1 | 28.4 |
 | GLM-130B | 130B | 36.7 | 55.8 | 47.7 | 43.0 | 44.0 | 30.7 |
-| OpenBT5 | 15B | 34.8 | 46.6 | 41.1 | 41.5 | 39.8 | 31.1 |
+| OpenBA | 15B | 34.8 | 46.6 | 41.1 | 41.5 | 39.8 | 31.1 |
 ### BBH
 下表是模型在BBH基准测试中的性能，其中\#Param.表示模型参数。我们汇报所有模型的准确率。
 
@@ -58,7 +58,7 @@
 | Baichuan | 7B | 31.9 |
 | BatGPT | 15B | **34.1**  |
 | MOSS | 16B | 29.3 |
-| OpenBT5 | 15B | **34.1**  |
+| OpenBA | 15B | **34.1**  |
 
 ### 阅读理解
 下表是模型在BELEBELE基准测试中的性能，其中\#Param.表示模型参数，$\dagger$表示5-shot设置，$\ddagger$表示全英文微调，$*$表示针对指令模型的0-shot设置。
@@ -70,7 +70,7 @@
 | InfoXLM $(‡)$ | 550M | 79.3 | 74.6 | 72.4 | 75.4 |
 | XLM-V $(‡)$ | 1.2B | 76.2 | 71.0 | 67.1 | 71.4 |
 | LLaMA2-Chat $(*)$ | 70B | 78.8 | 62.4 | 59.3 | 66.8 |
-| OpenBT5 $(*)$ | 15B | 78.6 | **75.2**  | **73.7**  | **75.8**  |
+| OpenBA $(*)$ | 15B | 78.6 | **75.2**  | **73.7**  | **75.8**  |
 
 ### 机器翻译
 下表是模型在包含从Flores基准测试中采样的50个句子的Flores子集上的性能，其中\#Param.表示模型参数。我们汇报了所有模型的BLEU值。
@@ -83,7 +83,7 @@
 | PARROT | 7B | 19.6  | 24.8 |
 | BatGPT | 15B | 23.1  | 38.7 |
 | MOSS | 16B | 17.2 | 32.5 |
-| OpenBT5 | 15B | 23.3 | 37.4  |
+| OpenBA | 15B | 23.3 | 37.4  |
 ## 用法
 ### 演示 
 首先，你需要安装以下的依赖：
@@ -93,11 +93,11 @@ pip install transformers torch>=2.0 sentencepiece
 
 推理时，我们在长度适应和微调阶段恢复了任务token `<S>` 和特殊token `<extra_id_0>` ，所以你可以将输入指令格式化为 `<S> {your input} <extra_id_0>` 以获得更好的答案。
 
-以下是使用`OpenBT5-LM`的句子补全示例。
+以下是使用`OpenBA-LM`的句子补全示例。
 ```python
 >>> from transformers import AutoTokenizer, AutoModelForSeq2SeqLM
->>> tokenizer = AutoTokenizer.from_pretrained("OpenBT5/OpenBT5-LM", trust_remote_code=True)
->>> model = AutoModelForSeq2SeqLM.from_pretrained("OpenBT5/OpenBT5-LM", trust_remote_code=True).half().cuda()
+>>> tokenizer = AutoTokenizer.from_pretrained("OpenBA/OpenBA-LM", trust_remote_code=True)
+>>> model = AutoModelForSeq2SeqLM.from_pretrained("OpenBA/OpenBA-LM", trust_remote_code=True).half().cuda()
 >>> model = model.eval()
 >>> query = "<S>" + "苏州处太湖平原，沿江为高沙平原，河" + "<extra_id_0>"
 >>> inputs = tokenizer(query, return_tensors="pt").to("cuda")
@@ -107,11 +107,11 @@ pip install transformers torch>=2.0 sentencepiece
 流两侧为河淤平原,苏州平原是江苏平原主体,地势低平,土地肥沃,气候温和
 ```
 
-以下是使用`OpenBT5-Flan`遵循指令对话的示例。
+以下是使用`OpenBA-Flan`遵循指令对话的示例。
 ```python
 >>> from transformers import AutoTokenizer, AutoModelForSeq2SeqLM
->>> tokenizer = AutoTokenizer.from_pretrained("OpenBT5/OpenBT5-Flan", trust_remote_code=True)
->>> model = AutoModelForSeq2SeqLM.from_pretrained("OpenBT5/OpenBT5-Flan", trust_remote_code=True).half().cuda()
+>>> tokenizer = AutoTokenizer.from_pretrained("OpenBA/OpenBA-Flan", trust_remote_code=True)
+>>> model = AutoModelForSeq2SeqLM.from_pretrained("OpenBA/OpenBA-Flan", trust_remote_code=True).half().cuda()
 >>> model = model.eval()
 >>> query = "<S>" + "介绍一下中国的四大名著，并分别概括其主要内容" + "<extra_id_0>"
 >>> inputs = tokenizer(query, return_tensors="pt").to("cuda")
@@ -145,7 +145,7 @@ bash scripts/run_flan.sh   # 微调
 ## 详细信息
 
 ### 模型结构
-一般来说，OpenBT5模型遵循类似T5的encoder-decoder架构。
+一般来说，OpenBA模型遵循类似T5的encoder-decoder架构。
 值得注意的是，编码器和解码器扮演不同的角色，其中编码器赋予模型强大的理解能力，而解码器带来模型的生成能力，并且已有的工作表明，具有更多encoder层的encoder-decoder模型可以实现强大的性能。
 为了填补更深的解码器为基础的大语言模型的空白，我们还设计了一个非对称结构，其中超参数列在下表中。
 | Encoder | Decoder | Attn Heads | $d_{model}$ | $d_{ff}$ | #Param.(B) | Vocab Size | Training Tokens | Pos Emb |
@@ -162,6 +162,6 @@ bash scripts/run_flan.sh   # 微调
 上图展示了训练数据的组成。图(a)表示预训练数据集的组成比例。图(b)表示双语Flan数据集的组成。图(c)表示中文Flan数据集的更细粒度组成。
 
 ## 免责声明
-使用OpenBT5-LM应遵循社会规范，不得用于危害国家或社会安全或违反法律的活动。此外，我们还要求用户不要将OpenBT5-LM用于尚未经过适当安全审查和记录的互联网服务。我们希望所有用户都遵守这一原则，确保技术发展在一个有序、合法的环境中进行。
+使用OpenBA-LM应遵循社会规范，不得用于危害国家或社会安全或违反法律的活动。此外，我们还要求用户不要将OpenBA-LM用于尚未经过适当安全审查和记录的互联网服务。我们希望所有用户都遵守这一原则，确保技术发展在一个有序、合法的环境中进行。
 
 我们已尽最大努力确保模型训练过程中使用的数据符合规定。然而，尽管我们付出了巨大的努力，但由于模型和数据的复杂性，仍可能出现意外问题。如果在提供服务过程中，通过使用本项目中包含的模型或其修改版本生成误导性或有害的陈述，责任在于服务提供商，与本项目无关。
