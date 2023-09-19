@@ -8,7 +8,7 @@ import types
 import torch
 
 from transformers.modeling_utils import WEIGHTS_INDEX_NAME, WEIGHTS_NAME, shard_checkpoint
-from OpenBT5 import OpenBT5Config, OpenBT5Tokenizer
+from OpenBA import OpenBAConfig, OpenBATokenizer
 
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), 'training')))
 print(os.path.abspath(os.path.join(os.path.dirname(__file__), 'training')))
@@ -333,8 +333,8 @@ def convert_checkpoint_from_megatron_to_transformers(args):
     vocab_size = megatron_args.padded_vocab_size
     print("vocab_size:", vocab_size)
 
-    config = OpenBT5Config(
-        architectures=["OpenBT5ForConditionalGeneration"],
+    config = OpenBAConfig(
+        architectures=["OpenBAForConditionalGeneration"],
         vocab_size=vocab_size,
         hidden_size=megatron_args.hidden_size,
         kv_channels=megatron_args.kv_channels,
@@ -349,7 +349,7 @@ def convert_checkpoint_from_megatron_to_transformers(args):
         add_qkv_bias=True,
         add_ffn_bias=False,
         add_lm_head_bias=True,
-        model_type="openbt5",
+        model_type="openba",
         max_seq_length=megatron_args.encoder_seq_length,
         decoder_max_seq_length = megatron_args.decoder_seq_length,
     )
@@ -462,7 +462,7 @@ def convert_checkpoint_from_megatron_to_transformers(args):
     else:
         tokenizer_name = args.tokenizer_name
 
-    tokenizer = OpenBT5Tokenizer.from_pretrained(tokenizer_name)
+    tokenizer = OpenBATokenizer.from_pretrained(tokenizer_name)
     tokenizer_class = type(tokenizer).__name__
     config.tokenizer_class = tokenizer_class
 

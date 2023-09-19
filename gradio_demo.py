@@ -6,8 +6,8 @@ import re
 import torch
 import os
 
-tokenizer = AutoTokenizer.from_pretrained('OpenBT5/OpenBT5-Flan', trust_remote_code=True)
-model = AutoModelForSeq2SeqLM.from_pretrained('OpenBT5/OpenBT5-Flan', trust_remote_code=True).half().cuda()
+tokenizer = AutoTokenizer.from_pretrained('OpenBA/OpenBA-Flan', trust_remote_code=True)
+model = AutoModelForSeq2SeqLM.from_pretrained('OpenBA/OpenBA-Flan', trust_remote_code=True).half().cuda()
 model.eval()
 
 def case_insensitive_replace(input_str, from_str, to_str):
