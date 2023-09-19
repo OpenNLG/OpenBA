@@ -1,4 +1,4 @@
-<div align=center><img src="assets/icon.png" width="200"></div>
+<div align=center><img src="assets/bachelor.png" width="200"></div>
 
 # OpenBA
 This is the official code for OpenBA: An Open-Sourced 15B Bilingual Asymmetric Seq2Seq Model Pre-trained from Scratch.
