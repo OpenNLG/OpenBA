@@ -5,8 +5,8 @@ from transformers.configuration_utils import PretrainedConfig
 logger = logging.get_logger(__name__)
 
 
-class OpenBT5Config(PretrainedConfig):
-    model_type = "openbt5"
+class OpenBAConfig(PretrainedConfig):
+    model_type = "openba"
     keys_to_ignore_at_inference = ["past_key_values"]
     attribute_map = {
         "hidden_size": "hidden_size",

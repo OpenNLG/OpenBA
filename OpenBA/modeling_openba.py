@@ -13,7 +13,7 @@ from transformers.modeling_outputs import (
 )
 from transformers.utils import logging, is_torch_fx_proxy
 
-from .configuration_openbt5 import OpenBT5Config
+from .configuration_openba import OpenBAConfig
 
 
 logger = logging.get_logger(__name__)
@@ -61,7 +61,7 @@ class SwiGLUMLP(nn.Module):
         return hidden_states
 
 
-class OpenBT5Attention(nn.Module):
+class OpenBAAttention(nn.Module):
     def __init__(self, config, attn_type='self'):
         super().__init__()
         self.attn_type = attn_type
@@ -171,16 +171,16 @@ class OpenBT5Attention(nn.Module):
         return outputs
 
 
-class OpenBT5Block(nn.Module):
+class OpenBABlock(nn.Module):
     def __init__(self, config) -> None:
         super().__init__()
         self.is_decoder = config.is_decoder
         self.dropout = config.hidden_dropout
         self.input_layernorm = nn.LayerNorm(config.hidden_size)
-        self.self_attn = OpenBT5Attention(config, attn_type='self')
+        self.self_attn = OpenBAAttention(config, attn_type='self')
         self.post_attn_layernorm = nn.LayerNorm(config.hidden_size)
         if self.is_decoder:
-            self.inter_attn = OpenBT5Attention(config, attn_type='cross')
+            self.inter_attn = OpenBAAttention(config, attn_type='cross')
             self.post_inter_attn_layernorm = nn.LayerNorm(config.hidden_size)
         self.mlp = SwiGLUMLP(config)
 
@@ -272,13 +272,13 @@ class OpenBT5Block(nn.Module):
         return outputs
 
 
-class OpenBT5PreTrainedModel(PreTrainedModel):
-    config_class = OpenBT5Config
+class OpenBAPreTrainedModel(PreTrainedModel):
+    config_class = OpenBAConfig
     base_model_prefix = "transformer"
-    _no_split_modules = ["OpenBT5Block"]
+    _no_split_modules = ["OpenBABlock"]
 
     def _set_gradient_checkpointing(self, module, value=False):
-        if isinstance(module, (OpenBT5Attention, OpenBT5Stack)):
+        if isinstance(module, (OpenBAAttention, OpenBAStack)):
             module.gradient_checkpointing = value
 
     def _init_weights(self, module):
@@ -287,7 +287,7 @@ class OpenBT5PreTrainedModel(PreTrainedModel):
         if isinstance(module, nn.LayerNorm):
             module.weight.data.fill_(1.0)
             module.bias.data.zero_()
-        elif isinstance(module, OpenBT5ForConditionalGeneration):
+        elif isinstance(module, OpenBAForConditionalGeneration):
             module.shared_embedding.weight.data.normal_(mean=0.0, std=factor * 1.0)
             if hasattr(module, "lm_head") and not self.config.tie_word_embeddings:
                 module.lm_head.weight.data.normal_(mean=0.0, std=factor * 1.0)
@@ -298,7 +298,7 @@ class OpenBT5PreTrainedModel(PreTrainedModel):
             module.fc_out.weight.data.normal_(mean=0.0, std=factor * ((module.ffn_hidden_size) ** -0.5))
             if hasattr(module.fc_out, "bias") and module.fc_out.bias is not None:
                 module.fc_out.bias.data.zero_()
-        elif isinstance(module, OpenBT5Attention):
+        elif isinstance(module, OpenBAAttention):
             hidden_size = self.config.hidden_size
             kv_channels = self.config.kv_channels
             n_heads = self.config.num_heads
@@ -337,13 +337,13 @@ class OpenBT5PreTrainedModel(PreTrainedModel):
 
         return shifted_input_ids
 
-class OpenBT5Stack(OpenBT5PreTrainedModel):
+class OpenBAStack(OpenBAPreTrainedModel):
     def __init__(self, config, embed_tokens):
         super().__init__(config)
         self.embed_tokens = embed_tokens
         self.is_decoder = config.is_decoder
         self.block = nn.ModuleList(
-            [OpenBT5Block(config) for _ in range(config.num_layers)]
+            [OpenBABlock(config) for _ in range(config.num_layers)]
         )
         self.final_layernorm = nn.LayerNorm(config.hidden_size)
 
@@ -496,7 +496,7 @@ class OpenBT5Stack(OpenBT5PreTrainedModel):
         )
 
 
-class OpenBT5ForConditionalGeneration(OpenBT5PreTrainedModel):
+class OpenBAForConditionalGeneration(OpenBAPreTrainedModel):
     _keys_to_ignore_on_load_missing = [
         r"encoder.embed_tokens.weight",
         r"decoder.embed_tokens.weight",
@@ -510,14 +510,14 @@ class OpenBT5ForConditionalGeneration(OpenBT5PreTrainedModel):
         encoder_config.is_decoder = False
         encoder_config.use_cache = False
         encoder_config.is_encoder_decoder = False
-        self.encoder = OpenBT5Stack(encoder_config, self.shared_embedding)
+        self.encoder = OpenBAStack(encoder_config, self.shared_embedding)
 
         decoder_config = copy.deepcopy(config)
         decoder_config.is_decoder = True
         decoder_config.is_encoder_decoder = False
         decoder_config.num_layers = config.num_decoder_layers
         decoder_config.max_seq_length = config.decoder_max_seq_length
-        self.decoder = OpenBT5Stack(decoder_config, self.shared_embedding)
+        self.decoder = OpenBAStack(decoder_config, self.shared_embedding)
 
         self.lm_head = nn.Linear(config.hidden_size, config.vocab_size, bias=config.add_lm_head_bias)
 

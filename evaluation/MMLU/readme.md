@@ -1,7 +1,7 @@
 
 # MMLU evaluation
 
-Here we provide scripts for inference of MMLU with OpenBT5.
+Here we provide scripts for inference of MMLU with OpenBA.
 
 `make_data.py` is the script to construct `./data/5shot`, which is the MMLU dataset in json format.
 

@@ -42,7 +42,7 @@ PRETRAINED_POSITIONAL_EMBEDDINGS_SIZES = {
 }
 
 
-class OpenBT5Tokenizer(PreTrainedTokenizer):
+class OpenBATokenizer(PreTrainedTokenizer):
     """
     Construct a T5 tokenizer. Based on [SentencePiece](https://github.com/google/sentencepiece).
 
@@ -145,8 +145,8 @@ class OpenBT5Tokenizer(PreTrainedTokenizer):
 
     @staticmethod
     def _eventually_correct_t5_max_length(pretrained_model_name_or_path, max_model_length, init_max_model_length):
-        if pretrained_model_name_or_path in OpenBT5Tokenizer.max_model_input_sizes:
-            deprecated_max_model_length = OpenBT5Tokenizer.max_model_input_sizes[pretrained_model_name_or_path]
+        if pretrained_model_name_or_path in OpenBATokenizer.max_model_input_sizes:
+            deprecated_max_model_length = OpenBATokenizer.max_model_input_sizes[pretrained_model_name_or_path]
             if init_max_model_length is not None and init_max_model_length != max_model_length:
                 return init_max_model_length
             elif init_max_model_length is None:
