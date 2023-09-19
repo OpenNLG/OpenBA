@@ -1,6 +1,6 @@
 <div align=center><img src="assets/bachelor.png" width="200"></div>
 
-# OpenBA
+# OpenBA🎓
 This is the official code for OpenBA: An Open-Sourced 15B Bilingual Asymmetric Seq2Seq Model Pre-trained from Scratch.
 
 [![Code License](https://img.shields.io/badge/Code%20License-Apache_2.0-brightgreen.svg)](LICENSE)
