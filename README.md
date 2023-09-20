@@ -170,3 +170,14 @@ The use of the OpenBA-LM should adhere to societal norms and not be used for any
 
 We have done our best to ensure the compliance of the data used during the model training process. However, despite our significant efforts, unforeseen issues may still arise due to the complexity of the model and data. If misleading or harmful statements are generated through the use of the models included in this project or their modified versions while providing services, the responsibility lies with the service provider and is not associated with this project.
 
+## Citation
+Please add the citation if our paper or code helps you.
+
+```
+@misc{2309.10706,
+Author = {Juntao Li and Zecheng Tang and Yuyang Ding and Pinzheng Wang and Pei Guo and Wangjie You and Dan Qiao and Wenliang Chen and Guohong Fu and Qiaoming Zhu and Guodong Zhou and Min Zhang},
+Title = {OpenBA: An Open-sourced 15B Bilingual Asymmetric seq2seq Model Pre-trained from Scratch},
+Year = {2023},
+Eprint = {arXiv:2309.10706},
+}
+```
