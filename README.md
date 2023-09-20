@@ -1,7 +1,7 @@
 <div align=center><img src="assets/bachelor.png" width="200"></div>
 
 # OpenBA🎓
-This is the official code for OpenBA: An Open-Sourced 15B Bilingual Asymmetric Seq2Seq Model Pre-trained from Scratch.
+This is the official code for [OpenBA: An Open-Sourced 15B Bilingual Asymmetric Seq2Seq Model Pre-trained from Scratch](https://arxiv.org/abs/2309.10706)
 
 [![Code License](https://img.shields.io/badge/Code%20License-Apache_2.0-brightgreen.svg)](LICENSE)
 [![Data License](https://img.shields.io/badge/Data%20License-CC%20BY--NC%204.0-blue.svg)](DATA_LICENSE)
@@ -28,7 +28,7 @@ This is the official code for OpenBA: An Open-Sourced 15B Bilingual Asymmetric S
 
 ## Open Source Plan
 We are excited to unveil two distinguished versions of our model, with another on the horizon:
-
+``NOTICE:`` We will update the checkpoints as soon as possible.
 - [OpenBA-LM](https://huggingface.co/OpenBA/OpenBA-LM): The backbone language models was pre-trained on 340B English, Chinese, and code tokens. 
 - [OpenBA-Flan](https://huggingface.co/OpenBA/OpenBA-Flan): We perform supervised fine-tuning on the base model with additional 40B tokens using our collected BiFlan Dataset.
 - OpenBA-Chat: coming soon
