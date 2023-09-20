@@ -147,7 +147,7 @@ bash scripts/run_flan.sh   # fine-tune
 ## Details
 
 ### Model Structure
-Generally, the OpenBA model follows the standard encoder-decoder architecture like T5.
+Generally, the OpenBA model follows the standard encoder-decoder architecture.
 However, it is worth noting that the encoder and decoder serve different roles, where the encoder endows the model with strong comprehension capability, and the decoder brings the model with generative ability. Existing works indicate that an encoder-decoder model with more encoder layers can achieve powerful performance.
 To fill the gap of deeper decoder-based LLM, we also design an asymmetric structure, where the hyper-parameters are listed in the table below.
 | Encoder | Decoder | Attn Heads | $d_{model}$ | $d_{ff}$ | #Param.(B) | Vocab Size | Training Tokens | Pos Emb |
