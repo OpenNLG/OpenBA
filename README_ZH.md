@@ -145,7 +145,7 @@ bash scripts/run_flan.sh   # 微调
 ## 详细信息
 
 ### 模型结构
-一般来说，OpenBA模型遵循类似T5的encoder-decoder架构。
+OpenBA模型是遵循传统的encoder-decoder架构。
 值得注意的是，编码器和解码器扮演不同的角色，其中编码器赋予模型强大的理解能力，而解码器带来模型的生成能力，并且已有的工作表明，具有更多encoder层的encoder-decoder模型可以实现强大的性能。
 为了填补更深的解码器为基础的大语言模型的空白，我们还设计了一个非对称结构，其中超参数列在下表中。
 | Encoder | Decoder | Attn Heads | $d_{model}$ | $d_{ff}$ | #Param.(B) | Vocab Size | Training Tokens | Pos Emb |
