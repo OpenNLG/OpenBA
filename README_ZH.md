@@ -165,3 +165,14 @@ bash scripts/run_flan.sh   # 微调
 使用OpenBA-LM应遵循社会规范，不得用于危害国家或社会安全或违反法律的活动。此外，我们还要求用户不要将OpenBA-LM用于尚未经过适当安全审查和记录的互联网服务。我们希望所有用户都遵守这一原则，确保技术发展在一个有序、合法的环境中进行。
 
 我们已尽最大努力确保模型训练过程中使用的数据符合规定。然而，尽管我们付出了巨大的努力，但由于模型和数据的复杂性，仍可能出现意外问题。如果在提供服务过程中，通过使用本项目中包含的模型或其修改版本生成误导性或有害的陈述，责任在于服务提供商，与本项目无关。
+
+## 引用
+如果您觉得我们的代码和数据对您有帮助，请按照以下格式引用：
+```
+@misc{2309.10706,
+Author = {Juntao Li and Zecheng Tang and Yuyang Ding and Pinzheng Wang and Pei Guo and Wangjie You and Dan Qiao and Wenliang Chen and Guohong Fu and Qiaoming Zhu and Guodong Zhou and Min Zhang},
+Title = {OpenBA: An Open-sourced 15B Bilingual Asymmetric seq2seq Model Pre-trained from Scratch},
+Year = {2023},
+Eprint = {arXiv:2309.10706},
+}
+```
