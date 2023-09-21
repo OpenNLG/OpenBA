@@ -29,7 +29,7 @@ This is the official code for [OpenBA: An Open-Sourced 15B Bilingual Asymmetric 
 ## Open Source Plan
 We are excited to unveil two distinguished versions of our model, with another on the horizon:
 - [OpenBA-LM](https://huggingface.co/OpenBA/OpenBA-LM): The backbone language models was pre-trained on 340B English, Chinese, and code tokens. 
-- [OpenBA-Flan](https://huggingface.co/OpenBA/OpenBA-Flan): We perform supervised fine-tuning on the base model with additional 40B tokens using our collected BiFlan Dataset.
+- [OpenBA-Flan](https://huggingface.co/OpenBA/OpenBA-Flan): We continually perform supervised fine-tuning with 40B tokens of constructed BiFlan Dataset.
 - OpenBA-Chat: We will release the Chat model soon ...
 
 ## Overview of Training process
