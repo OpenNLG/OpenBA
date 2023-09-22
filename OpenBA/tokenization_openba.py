@@ -127,6 +127,12 @@ class OpenBATokenizer(PreTrainedTokenizer):
 
         self.sp_model_kwargs = {} if sp_model_kwargs is None else sp_model_kwargs
 
+        self.vocab_file = vocab_file
+        self._extra_ids = extra_ids
+
+        self.sp_model = spm.SentencePieceProcessor(**self.sp_model_kwargs)
+        self.sp_model.Load(vocab_file)
+
         super().__init__(
             eos_token=eos_token,
             unk_token=unk_token,
@@ -136,12 +142,6 @@ class OpenBATokenizer(PreTrainedTokenizer):
             sp_model_kwargs=self.sp_model_kwargs,
             **kwargs,
         )
-
-        self.vocab_file = vocab_file
-        self._extra_ids = extra_ids
-
-        self.sp_model = spm.SentencePieceProcessor(**self.sp_model_kwargs)
-        self.sp_model.Load(vocab_file)
 
     @staticmethod
     def _eventually_correct_t5_max_length(pretrained_model_name_or_path, max_model_length, init_max_model_length):
