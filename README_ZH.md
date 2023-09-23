@@ -88,8 +88,9 @@
 ### 演示 
 首先，你需要安装以下的依赖：
 ```bash
-pip install transformers torch>=2.0 sentencepiece
+pip install transformers==4.31.0 torch>=2.0 sentencepiece
 ```
+```注意：``` 请确保您的transformers库版本不超过4.33.2 ！
 
 推理时，我们在长度适应和微调阶段恢复了任务token `<S>` 和特殊token `<extra_id_0>` ，所以你可以将输入指令格式化为 `<S> {your input} <extra_id_0>` 以获得更好的答案。
 
