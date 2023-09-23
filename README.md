@@ -89,8 +89,9 @@ Model performance on Flores subset containing 50 sentences sampled from Flores b
 ### DEMO 
 You should first install the requirements below:
 ```bash
-pip install transformers torch>=2.0 sentencepiece
+pip install transformers==4.31.0 torch>=2.0 sentencepiece
 ```
+```NOTICE:``` Just make sure that the version of the transformers library is no higher than 4.33.2 !
 
 For inference, note that we restore the task token `<S>` and special token `<extra_id_0>` in length adaptation and fine-tuning stage, so you may format your instruction input as `<S> {your input} <extra_id_0>` to get a better answer.
 
