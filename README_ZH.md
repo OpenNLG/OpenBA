@@ -170,10 +170,10 @@ OpenBA模型是遵循传统的encoder-decoder架构。
 ## 引用
 如果您觉得我们的代码和数据对您有帮助，请按照以下格式引用：
 ```
-@misc{2309.10706,
-Author = {Juntao Li and Zecheng Tang and Yuyang Ding and Pinzheng Wang and Pei Guo and Wangjie You and Dan Qiao and Wenliang Chen and Guohong Fu and Qiaoming Zhu and Guodong Zhou and Min Zhang},
-Title = {OpenBA: An Open-sourced 15B Bilingual Asymmetric seq2seq Model Pre-trained from Scratch},
-Year = {2023},
-Eprint = {arXiv:2309.10706},
+@article{li2023openba,
+  title={OpenBA: An Open-sourced 15B Bilingual Asymmetric seq2seq Model Pre-trained from Scratch},
+  author={Li, Juntao and Tang, Zecheng and Ding, Yuyang and Wang, Pinzheng and Guo, Pei and You, Wangjie and Qiao, Dan and Chen, Wenliang and Fu, Guohong and Zhu, Qiaoming and others},
+  journal={arXiv preprint arXiv:2309.10706},
+  year={2023}
 }
 ```
