@@ -8,8 +8,18 @@ This is the official code for [OpenBA: An Open-Sourced 15B Bilingual Asymmetric 
 [![Model License](https://img.shields.io/badge/Model%20License-GNU%20AGPL%203.0-red.svg)](MODEL_LICENSE)
 
 [[中文版](README_ZH.md)] [[English](README.md)]
-## Content
-- [Open Source Plan](#open-source-plan)
+
+## News🔥
+- We have updated our paper (fix typos and add content about downstream adaptation). Please refer to our new paper [OpenBA: An Open-Sourced 15B Bilingual Asymmetric Seq2Seq Model Pre-trained from Scratch](https://arxiv.org/abs/2309.10706) (coming soon...)
+- We have released three downstream versions of OpenBA
+  - [OpenBA-Chat](https://huggingface.co/OpenBA/OpenBA-Code): Multi-turn Dialogue Model
+  - [OpenBA-Code](https://huggingface.co/OpenBA/OpenBA-Code): Instruction-guided Code Generation Model
+  - [OpenBA-InstructGen](https://huggingface.co/OpenBA/OpenBA-InstructGen): Instruction Generation Model
+  - [OpenBA-Tool](https://huggingface.co/OpenBA/): Retrieval Model with Tools (coming soon...) 
+
+
+## Content📝
+- [Open Source Checklist](#open-source-checklist)
 - [Overview of Training process](#overview-of-training-process)
 - [Evaluation Results](#evaluation-results)
   - [C-EVAL](#c-eval)
@@ -26,11 +36,14 @@ This is the official code for [OpenBA: An Open-Sourced 15B Bilingual Asymmetric 
 
 
 
-## Open Source Plan
+## Open Source Checklist
 We are excited to unveil two distinguished versions of our model, with another on the horizon:
 - [OpenBA-LM](https://huggingface.co/OpenBA/OpenBA-LM): The backbone language models was pre-trained on 340B English, Chinese, and code tokens. 
-- [OpenBA-Flan](https://huggingface.co/OpenBA/OpenBA-Flan): We continually perform supervised fine-tuning with 40B tokens of constructed BiFlan Dataset.
-- OpenBA-Chat: We will release the Chat model soon ...
+- [OpenBA-Flan](https://huggingface.co/OpenBA/OpenBA-Flan): We continually perform supervised fine-tuning with 40B tokens of constructed BiFlan Dataset. (Multi-lingual Instruction Model)
+- [OpenBA-Chat](https://huggingface.co/OpenBA/OpenBA-Code): Multi-turn Dialogue Model
+- [OpenBA-Code](https://huggingface.co/OpenBA/OpenBA-Code): Instruction-guided Code Generation Model
+- [OpenBA-InstructGen](https://huggingface.co/OpenBA/OpenBA-InstructGen): Instruction Generation Model
+- [OpenBA-Tool](https://huggingface.co/OpenBA/): Retrieval Model with Tools (coming soon...) 
 
 ## Overview of Training process
 <p align="center" width="100%">
@@ -85,7 +98,9 @@ Model performance on Flores subset containing 50 sentences sampled from Flores b
 | BatGPT | 15B | 23.1  | 38.7 |
 | MOSS | 16B | 17.2 | 32.5 |
 | OpenBA | 15B | 23.3 | 37.4  |
-## Usage
+
+## Usage🚀
+
 ### DEMO 
 You should first install the requirements below:
 ```bash
@@ -165,7 +180,7 @@ To fill the gap of deeper decoder-based LLM, we also design an asymmetric struct
 </p>
 The composition of Data collection. Figure (a) represents the composition ratio of the pre-training dataset. Figure (b) represents the composition of the bilingual Flan dataset. Figure (c) represents the finer-grained composition of the Chinese Flan dataset.
 
-## Disclaimers
+## Disclaimers📌
 The use of the OpenBA-LM should adhere to societal norms and not be used for any activities that jeopardize national or social security or violate the law. Additionally, we also request users not to use the OpenBA-LM for internet services that have not undergone appropriate security review and documentation. We hope that all users will abide by this principle to ensure that technological development occurs in a regulated and legal environment.
 
 We have done our best to ensure the compliance of the data used during the model training process. However, despite our significant efforts, unforeseen issues may still arise due to the complexity of the model and data. If misleading or harmful statements are generated through the use of the models included in this project or their modified versions while providing services, the responsibility lies with the service provider and is not associated with this project.
