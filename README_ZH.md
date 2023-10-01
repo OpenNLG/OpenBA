@@ -23,13 +23,18 @@
   - [训练数据](#训练数据)
 - [免责声明](#免责声明)
 
-
+<p align="center" width="100%">
+<a target="_blank"><img src="assets/downstream.png"  style="width: 100%; min-width: 300px; display: block; margin: auto;"></a>
+</p>
 
 ## 开源计划
 我们开源了两个版本你的模型，另一个模型即将开源：
 - [OpenBA-LM](https://huggingface.co/OpenBA/OpenBA-LM)：支柱语言模型预训练在英语、中文和代码令牌上的340B。
 - [OpenBA-Flan](https://huggingface.co/OpenBA/OpenBA-Flan)：我们对基础模型进行监督式微调，额外使用40B令牌和我们收集的BiFlan数据集。
-- OpenBA-Chat：即将推出
+- [OpenBA-Chat](https://huggingface.co/OpenBA/OpenBA-Code): 多轮对话语言模型。
+- [OpenBA-Code](https://huggingface.co/OpenBA/OpenBA-Code): 代码生成模型。
+- [OpenBA-InstructGen](https://huggingface.co/OpenBA/OpenBA-InstructGen): 指令生成模型。
+- [OpenBA-Tool](https://huggingface.co/OpenBA/): 工具检索增强模型
 
 ## 训练过程
 <p align="center" width="100%">
@@ -121,6 +126,13 @@ pip install transformers==4.31.0 torch>=2.0 sentencepiece
 >>> print(response)
 中国的四大名著分别是《红楼梦》、《西游记》、《水浒传》和《三国演义》。它们分别包括故事情节、文化内涵和历史背景等方面的不同特点。《红楼梦》是一部中国古典小说,讲述了贾宝玉、林黛玉、薛宝钗等一群人物在贾府的生活和爱情故事。《西游记》是中国著名小说,描述了孙悟空、猪八戒、沙悟净等一众妖魔鬼怪的冒险历程和故事。《水浒传》是一部中国古典小说,描述了宋江等一百零八位好汉的反抗故事。《三国演义》是中国古代著名小说,讲述了三国时期的历史和战争故事。这些小说在文学、历史、哲学和文化等方面都有着不同的影响和地位。
 ```
+
+你可以如下运行样例：
+```bash
+python gradio_chat_demo.py  # 运行对话模型样例
+python gradio_code_demo.py  # 运行代码模型样例
+```
+
 ### 训练
 我们的训练代码在`training`文件夹中。基于[Megatron-LM](https://github.com/NVIDIA/Megatron-LM/)，我们进行了以下实现：
 - SwiGLU激活函数，

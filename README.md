@@ -15,7 +15,7 @@ This is the official code for [OpenBA: An Open-Sourced 15B Bilingual Asymmetric 
   - [OpenBA-Chat](https://huggingface.co/OpenBA/OpenBA-Code): Multi-turn Dialogue Model
   - [OpenBA-Code](https://huggingface.co/OpenBA/OpenBA-Code): Instruction-guided Code Generation Model
   - [OpenBA-InstructGen](https://huggingface.co/OpenBA/OpenBA-InstructGen): Instruction Generation Model
-  - [OpenBA-Tool](https://huggingface.co/OpenBA/): Retrieval Model with Tools (coming soon...) 
+  - [OpenBA-Tool](https://huggingface.co/OpenBA/OpenBA-Tool): Retrieval Model with Tools
 
 
 ## Content📝
@@ -34,7 +34,9 @@ This is the official code for [OpenBA: An Open-Sourced 15B Bilingual Asymmetric 
   - [Data Collection](#data-collection)
 - [Disclaimers](#disclaimers)
 
-
+<p align="center" width="100%">
+<a target="_blank"><img src="assets/downstream.png"  style="width: 100%; min-width: 300px; display: block; margin: auto;"></a>
+</p>
 
 ## Open Source Checklist
 We are excited to unveil two distinguished versions of our model, with another on the horizon:
@@ -63,6 +65,7 @@ Model performance on C-Eval benchmark, where \#Param. denotes the model paramete
 | MOSS-moon-sft | 16B | 31.6 | 37.0 | 33.4 | 32.1 | 33.1 | 28.4 |
 | GLM-130B | 130B | 36.7 | 55.8 | 47.7 | 43.0 | 44.0 | 30.7 |
 | OpenBA | 15B | 34.8 | 46.6 | 41.1 | 41.5 | 39.8 | 31.1 |
+
 ### BBH
 Model performance on the BBH benchmark, where \#Param. denotes the model parameters. We report the accuracy score for all the models.
 
@@ -110,7 +113,6 @@ pip install transformers==4.31.0 torch>=2.0 sentencepiece
 
 For inference, note that we restore the task token `<S>` and special token `<extra_id_0>` in length adaptation and fine-tuning stage, so you may format your instruction input as `<S> {your input} <extra_id_0>` to get a better answer.
 
-
 Below is a sentence completion example using `OpenBA-LM`. 
 ```python
 >>> from transformers import AutoTokenizer, AutoModelForSeq2SeqLM
@@ -138,6 +140,13 @@ Below is a instruction example using `OpenBA-Flan`.
 >>> print(response)
 中国的四大名著分别是《红楼梦》、《西游记》、《水浒传》和《三国演义》。它们分别包括故事情节、文化内涵和历史背景等方面的不同特点。《红楼梦》是一部中国古典小说,讲述了贾宝玉、林黛玉、薛宝钗等一群人物在贾府的生活和爱情故事。《西游记》是中国著名小说,描述了孙悟空、猪八戒、沙悟净等一众妖魔鬼怪的冒险历程和故事。《水浒传》是一部中国古典小说,描述了宋江等一百零八位好汉的反抗故事。《三国演义》是中国古代著名小说,讲述了三国时期的历史和战争故事。这些小说在文学、历史、哲学和文化等方面都有着不同的影响和地位。
 ```
+
+You can run the chat demo as follows:
+```bash
+python gradio_chat_demo.py # run chat demo
+python gradio_code_demo.py # run code demo
+```
+
 ### Training
 Our training code are put in folder `training`. Based on [Megatron-LM](https://github.com/NVIDIA/Megatron-LM/), we made the following implementations:
 - SwiGLU activation function,
