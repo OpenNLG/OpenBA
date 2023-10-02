@@ -34,7 +34,7 @@
 - [OpenBA-Chat](https://huggingface.co/OpenBA/OpenBA-Code): 多轮对话语言模型。
 - [OpenBA-Code](https://huggingface.co/OpenBA/OpenBA-Code): 代码生成模型。
 - [OpenBA-InstructGen](https://huggingface.co/OpenBA/OpenBA-InstructGen): 指令生成模型。
-- [OpenBA-Tool](https://huggingface.co/OpenBA/): 工具检索增强模型
+- [OpenBA-Tool](https://huggingface.co/OpenBA/OpenBA-Tool): 工具检索增强模型
 
 ## 训练过程
 <p align="center" width="100%">
