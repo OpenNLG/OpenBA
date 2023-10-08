@@ -10,8 +10,8 @@ This is the official code for [OpenBA: An Open-Sourced 15B Bilingual Asymmetric 
 [[中文版](README_ZH.md)] [[English](README.md)]
 
 ## News🔥
-- We have updated our paper (fix typos and add content about downstream adaptation). Please refer to our new paper [OpenBA: An Open-Sourced 15B Bilingual Asymmetric Seq2Seq Model Pre-trained from Scratch](https://arxiv.org/abs/2309.10706) (coming soon...)
-- We have released three downstream versions of OpenBA
+- We have updated our paper (fix typos and add content about downstream adaptation). Please refer to our new paper [OpenBA: An Open-Sourced 15B Bilingual Asymmetric Seq2Seq Model Pre-trained from Scratch](https://arxiv.org/abs/2309.10706)
+- We have released four downstream versions of OpenBA
   - [OpenBA-Chat](https://huggingface.co/OpenBA/OpenBA-Code): Multi-turn Dialogue Model
   - [OpenBA-Code](https://huggingface.co/OpenBA/OpenBA-Code): Instruction-guided Code Generation Model
   - [OpenBA-InstructGen](https://huggingface.co/OpenBA/OpenBA-InstructGen): Instruction Generation Model
