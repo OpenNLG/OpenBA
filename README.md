@@ -45,7 +45,7 @@ We are excited to unveil two distinguished versions of our model, with another o
 - [OpenBA-Chat](https://huggingface.co/OpenBA/OpenBA-Code): Multi-turn Dialogue Model
 - [OpenBA-Code](https://huggingface.co/OpenBA/OpenBA-Code): Instruction-guided Code Generation Model
 - [OpenBA-InstructGen](https://huggingface.co/OpenBA/OpenBA-InstructGen): Instruction Generation Model
-- [OpenBA-Tool](https://huggingface.co/OpenBA/OpenBA-Tool): Retrieval Model with Tools (coming soon...) 
+- [OpenBA-Tool](https://huggingface.co/OpenBA/OpenBA-Tool): Retrieval Model with Tools 
 
 ## Overview of Training process
 <p align="center" width="100%">
